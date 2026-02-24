@@ -1,4 +1,6 @@
-# Ideaship
+# Hello World!
+
+# Lbp
 An AI website generator project I worked on in early 2025. Basically a Loveable/Vercel v0 clone.
 
 https://github.com/user-attachments/assets/daff7530-8fb3-4f1b-bab4-a8a2ae8f4cfa

@@ -2,13 +2,18 @@ import { NextResponse, NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { Stripe } from "stripe";
 
-// Initialize Stripe with your secret key
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-  apiVersion: "2019-05-16", // Use the latest API version
-});
-
 export async function POST(request: NextRequest) {
   try {
+    // Initialize Stripe at runtime to avoid build-time errors
+    if (!process.env.STRIPE_SECRET_KEY) {
+      console.error("Missing Stripe secret key");
+      return NextResponse.json({ error: "Stripe not configured" }, { status: 500 });
+    }
+
+    const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+      apiVersion: "2019-05-16", // Use the latest API version
+    });
+
     // Get the raw body and signature header
     const body = await request.text();
     const signature = request.headers.get("stripe-signature") || "";

@@ -1,3 +1,5 @@
+# Hello World!
+
 # Ideaship
 An AI website generator project I worked on in early 2025. Basically a Loveable/Vercel v0 clone.
 
